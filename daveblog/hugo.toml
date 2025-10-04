@@ -30,8 +30,3 @@ bottomText = ["Footer bottom text"]
     name = "About"
     url = "/about/"
     weight = 3
-
-    [[menu.main]]
-    name = "Lernkarten"
-    url = "/lernen/"
-    weight = 4

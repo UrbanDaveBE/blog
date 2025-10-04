@@ -5,10 +5,6 @@ layout: "about"  # Verweist auf das benutzerdefinierte Layout
 author:
   name: "dave"
 description: "This is a description of the about page."
-cover: "/images/tn.png"
-coverCaption: "Cover image for the about page"
-contactInfo: "contact@yourwebsite.com"
-
 
 ---
 

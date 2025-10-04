@@ -1,4 +1,37 @@
 baseURL = 'https://urbandavebe.github.io/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'some random docs'
 theme        = "hugo-theme-hello-friend-ng"
+[params]
+  homeSubtitle = "A simple thingy about docs"
+  
+[params.footer]
+trademark = "UrbanDaveBE"
+author = "John Doe"
+copyright = "© 2025 Mein Unternehmen"
+rss = true
+topText = ["Footer top text here"]
+bottomText = ["Footer bottom text"]
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "Posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 3
+
+    [[menu.main]]
+    name = "Lernkarten"
+    url = "/lernen/"
+    weight = 4

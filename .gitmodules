@@ -1,0 +1,4 @@
+[submodule "daveblog/public"]
+	path = daveblog/public
+	url = https://github.com/UrbanDaveBE/UrbanDaveBE.github.io.git
+	branch = main

@@ -1,8 +1,13 @@
-+++
-title = 'Kapitel34'
-date = 2025-03-07T09:15:26+01:00
-draft = false
-+++
+---
+title: "Kapitel34"
+date: 2025-03-07T09:15:26+01:00
+draft: false
+toc: false
+images:
+tags:
+  - untagged
+---
+
 ## 2.1 Analyse der strategischen Ausgangslage
 ### 2.1.1 Bisherige Entwicklung
 * bisherige Entwicklung des unternehmens ermitteln

@@ -1,14 +1,58 @@
 ---
-title: "Markdown Cheat Sheet"
+title: "Markdown Cheat Sheet & Blog Guide"
 draft: false
 date: 2022-08-27T09:16:45.000Z
-description: "Markdown is a powerful tool for creating rich text using a plain text editor. This cheatsheet is a quick reference for Markdown syntax."
+description: "Everything you need to know about Markdown and how to manage this blog."
 categories:
-  - Hello
+  - Guides
 tags:
-  - Hello
-  - WhatsApp
+  - Markdown
+  - Workflow
 ---
+
+# 🚀 Blog Management Guide
+
+Hier erfährst du, wie du diesen Blog pflegst und neue Inhalte veröffentlichst.
+
+## 1. Einen neuen Post erstellen
+Jeder Post ist ein "Page Bundle" (ein eigener Ordner). Das ist ideal für Bilder.
+
+**Schritte:**
+1.  Öffne dein Terminal im Verzeichnis: `D:\workspace\workspace.gravity\GitHubHugo\blog`.
+2.  Nutze den Hugo-Befehl (oder erstelle den Ordner manuell):
+    ```powershell
+    hugo new posts/mein-neuer-post/index.md
+    ```
+3.  Die neue Datei findest du unter `content/posts/mein-neuer-post/index.md`.
+
+## 2. Bilder und Dateien einbinden
+Da jeder Post ein eigener Ordner ist, kannst du Bilder einfach in denselben Ordner wie die `index.md` legen.
+
+**Beispiel:**
+- Datei: `content/posts/mein-neuer-post/foto.jpg`
+- Einbinden im Markdown: `![Beschreibung](foto.jpg)`
+
+## 3. Lokal testen (Vorschau)
+Bevor du veröffentlichst, kannst du dir die Seite lokal ansehen:
+```powershell
+hugo server -D
+```
+Die Seite ist dann unter `http://localhost:1313` erreichbar.
+
+## 4. Veröffentlichen (Live-Schalten)
+Dank GitHub Actions musst du nur deine Änderungen pushen. Der Rest passiert automatisch.
+
+**Befehle:**
+```powershell
+git add .
+git commit -m "Neuer Post: Mein Thema"
+git push origin main
+```
+*Nach ca. 1-2 Minuten ist die Änderung auf deiner Website sichtbar.*
+
+---
+
+# Markdown Cheat Sheet
 
 This Markdown cheat sheet **provides** a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for basic _syntax_ and extended syntax.
 

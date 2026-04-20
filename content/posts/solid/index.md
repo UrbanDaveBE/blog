@@ -1,75 +1,81 @@
 ---
-title: "Solid"
+title: "SOLID Principles: Clean Code & Design"
 date: 2025-02-08T12:35:44+01:00
 draft: false
-toc: false
-images:
+toc: true
 tags:
-  - untagged
+  - Architecture
+  - Clean Code
+  - OOP
+categories:
+  - Development
+  - Guides
 ---
 
-# SOLID Principles (Object-Oriented Design)
+# 🏗️ SOLID Principles (Object-Oriented Design)
 
-SOLID ist ein Akronym für fünf Prinzipien, die dabei helfen, sauberen, wartbaren und erweiterbaren Code zu schreiben. Diese Prinzipien sind besonders nützlich in der objektorientierten Programmierung (OOP).
+SOLID ist ein Akronym für fünf grundlegende Prinzipien des objektorientierten Designs. Sie wurden von **Robert C. Martin (Uncle Bob)** geprägt und helfen dabei, Software zu entwickeln, die **wartbar**, **erweiterbar** und **testbar** ist.
 
 ---
 
 ## 1. Single Responsibility Principle (SRP)
+> "A class should have one, and only one, reason to change."
 
 ### **Was?**
-- Eine Klasse sollte **nur eine Aufgabe** haben.
-- Es sollte **nur einen Grund geben**, die Klasse zu ändern.
+Eine Klasse sollte **nur eine einzige Aufgabe** haben. Wenn eine Klasse mehrere Verantwortlichkeiten übernimmt, führt dies zu einer starken Kopplung und erhöht die Fehleranfälligkeit bei Änderungen.
 
 ### **Warum?**
-- **Wartbarkeit**: Änderungen an einer Aufgabe beeinflussen nicht andere Teile des Systems.
-- **Testbarkeit**: Klassen mit einer einzigen Verantwortung sind einfacher zu testen.
+- **Wartbarkeit**: Änderungen an einer Funktion beeinflussen keine anderen, unabhängigen Funktionen.
+- **Klarheit**: Der Code ist leichter zu verstehen, da jede Klasse genau das tut, was ihr Name verspricht.
 
-### **Beispiel:**
-
-#### Falsch:
+### **Beispiel**
+#### ❌ Falsch (Zwei Aufgaben: Datenverarbeitung und Speicherung)
 ```python
 class Report:
     def generate_report(self):
-        print("Generating report...")
+        # Logik zur Berichterstellung
+        pass
 
-    def save_report(self):
-        print("Saving report...")
-
+    def save_to_file(self):
+        # Logik zum Speichern in eine Datei
+        pass
 ```
 
-#### Richtig: 
+#### ✅ Richtig (Verantwortlichkeiten getrennt)
 ```python
 class ReportGenerator:
-    def generate_report(self):
-        print("Generating report...")
+    def generate(self):
+        pass
 
 class ReportSaver:
-    def save_report(self):
-        print("Saving report...")
+    def save(self, data):
+        pass
 ```
+
+---
 
 ## 2. Open/Closed Principle (OCP)
+> "Software entities should be open for extension, but closed for modification."
 
-### Was?
-- Klassen sollten **offen für Erweiterungen**, aber **geschlossen für Modifikationen** sein.
-- Neue Funktionalität sollte durch **Hinzufügen von neuem Code** (z. B. neue Klassen) erreicht werden, nicht durch Ändern von bestehendem Code.
+### **Was?**
+Man sollte in der Lage sein, das Verhalten einer Klasse zu erweitern, ohne ihren bestehenden Quellcode zu verändern. Dies wird meist durch **Abstraktion** und **Intererfaces** erreicht.
 
-### Warum?
-- **Stabilität:** Bestehender Code bleibt unverändert und funktioniert weiterhin.
-- **Erweiterbarkeit:** Neue Anforderungen können leicht umgesetzt werden.
+### **Warum?**
+- **Stabilität**: Bestehender, getesteter Code bleibt unverührt.
+- **Erweiterbarkeit**: Neue Features (z.B. eine neue Bezahlmethode) können einfach hinzugefügt werden.
 
-### **Beispiel:**
-#### Falsch:
+### **Beispiel**
+#### ❌ Falsch (Muss bei jeder neuen Form geändert werden)
 ```python
 class AreaCalculator:
-    def calculate_area(self, shape):
-        if shape == "circle":
-            return 3.14 * radius * radius
-        elif shape == "square":
-            return side * side
+    def calculate(self, shape):
+        if shape.type == "circle":
+            return 3.14 * shape.radius ** 2
+        elif shape.type == "square":
+            return shape.side ** 2
 ```
-- Bei jeder neuen Form muss die Methode calculate_area geändert werden.
 
+#### ✅ Richtig (Abstraktion nutzt Polymorphismus)
 ```python
 class Shape:
     def area(self):
@@ -77,144 +83,52 @@ class Shape:
 
 class Circle(Shape):
     def area(self):
-        return 3.14 * self.radius * self.radius
+        return 3.14 * self.radius ** 2
 
 class Square(Shape):
     def area(self):
-        return self.side * self.side
+        return self.side ** 2
 ```
-- Neue Formen können durch Erben von Shape hinzugefügt werden, ohne AreaCalculator zu ändern.
+
+---
 
 ## 3. Liskov Substitution Principle (LSP)
+> "Subtypes must be substitutable for their base types."
 
-### Was?
-- **Kindklassen** sollten **ohne Probleme** anstelle ihrer **Elternklassen** verwendet werden können.
-Das Verhalten der Kindklasse sollte das der Elternklasse **nicht verletzen.**
+### **Was?**
+Objekte einer Basisklasse sollten durch Objekte ihrer Unterklassen ersetzt werden können, ohne dass das Programm fehlerhaft reagiert. Unterklassen dürfen das erwartete Verhalten der Basisklasse nicht einschränken oder verletzen.
 
-### Warum?
-- **Polymorphismus:** Ermöglicht die Verwendung von Subklassen, ohne das System zu brechen.
-- **Vorhersagbarkeit:** Das Verhalten bleibt konsistent.
+---
 
-### **Beispiel:**
-#### Falsch:
-```python
-class Bird:
-    def fly(self):
-        print("Flying...")
+## 4. Interface Segregation Principle (ISP)
+> "Clients should not be forced to depend upon interfaces that they do not use."
 
-class Ostrich(Bird):  # Strauß kann nicht fliegen!
-    def fly(self):
-        raise NotImplementedError("Ostriches can't fly!")
-```
-- Die Klasse **Ostrich** verletzt das Verhalten der Elternklasse **Bird**, da sie nicht fliegen kann.
+### **Was?**
+Interfases sollten klein und spezialisiert sein. Es ist besser, viele spezifische Interfaces zu haben als ein einziges "fettes" Interface, das Methoden enthält, die viele Implementierungen gar nicht benötigen.
 
-```python
-class Bird:
-    pass
+---
 
-class FlyingBird(Bird):
-    def fly(self):
-        print("Flying...")
+## 5. Dependency Inversion Principle (DIP)
+> "Depend upon abstractions, not concretions."
 
-class Ostrich(Bird):
-    pass
-```
-- Hier wird die Hierarchie verbessert: FlyingBird erbt von Bird und implementiert fly, während Ostrich einfach nur ein Bird ist, der nicht fliegen kann.
+### **Was?**
+Module auf hoher Ebene sollten nicht von Modulen auf niedriger Ebene abhängen. Beide sollten von Abstraktionen abhängen. Abstraktionen sollten nicht von Details abhängen, sondern Details von Abstraktionen.
 
+---
 
-## 3. Interface Segregation Principle (ISP)
+## 🚀 Zusammenfassung
 
-### Was?
-- **Interfaces** sollten **klein und spezialisiert** sein, nicht groß und allgemein.
-- Klassen sollten nicht gezwungen werden, Methoden zu implementieren, die sie nicht brauchen.
+| Prinzip | Kurzbeschreibung | Ziel |
+| :--- | :--- | :--- |
+| **S**RP | Single Responsibility | Hohe Kohäsion, eine Aufgabe pro Klasse. |
+| **O**CP | Open/Closed | Erweiterbarkeit ohne Code-Änderung. |
+| **L**SP | Liskov Substitution | Korrekte Vererbungshierarchien. |
+| **I**SP | Interface Segregation | Schlanke, spezifische Schnittstellen. |
+| **D**IP | Dependency Inversion | Entkopplung durch Abstraktionen. |
 
-### Warum?
-- **Flexibilität:** Klassen implementieren nur das, was sie wirklich benötigen.
-- **Wartbarkeit:** Änderungen an einem Interface betreffen nur die Klassen, die es tatsächlich verwenden.
+---
 
-### **Beispiel:**
-#### Falsch:
-```python
-class Printer:
-    def print(self):
-        pass
-    def scan(self):
-        pass
-    def fax(self):
-        pass
-
-class SimplePrinter(Printer):
-    def print(self):
-        print("Printing...")
-    def scan(self):  # Wird nicht benötigt!
-        raise NotImplementedError("SimplePrinter can't scan!")
-    def fax(self):  # Wird nicht benötigt!
-        raise NotImplementedError("SimplePrinter can't fax!")
-```
-- SimplePrinter muss unnötige Methoden implementieren.
-
-```python
-class Printer:
-    def print(self):
-        pass
-
-class Scanner:
-    def scan(self):
-        pass
-
-class FaxMachine:
-    def fax(self):
-        pass
-
-class SimplePrinter(Printer):
-    def print(self):
-        print("Printing...")
-```
-- Die Interfaces sind aufgeteilt: SimplePrinter implementiert nur Printer.
-
-## Dependency Inversion Principle (DIP)
-
-### Was?
-- **Abhängigkeiten** sollten auf **Abstraktionen** basieren, nicht auf konkreten Implementierungen.
-- High-Level-Module sollten nicht von Low-Level-Modulen abhängen, sondern beide sollten von Abstraktionen abhängen.
-
-
-### Warum?
-- **Flexibilität:** Einfacherer Austausch von Komponenten.
-- **Testbarkeit:** Abhängigkeiten können leicht gemockt werden.
-
-### **Beispiel:**
-#### Falsch:
-```python
-class LightBulb:
-    def turn_on(self):
-        print("LightBulb: On")
-
-class Switch:
-    def __init__(self):
-        self.bulb = LightBulb()
-    def operate(self):
-        self.bulb.turn_on()
-```
-- Switch hängt direkt von der konkreten Klasse LightBulb ab.
-
-```python
-class SwitchableDevice:
-    def turn_on(self):
-        pass
-
-class LightBulb(SwitchableDevice):
-    def turn_on(self):
-        print("LightBulb: On")
-
-class Switch:
-    def __init__(self, device: SwitchableDevice):
-        self.device = device
-    def operate(self):
-        self.device.turn_on()
-```
-- Switch hängt von der Abstraktion SwitchableDevice ab, nicht von LightBulb.
-
-
-
-
+## 📚 Weiterführende Links & Quellen
+- [Wikipedia: SOLID (deutsch)](https://de.wikipedia.org/wiki/Prinzipien_objektorientierten_Designs)
+- [Martin Fowler: Principles of Software Architecture](https://martinfowler.com/articles/principles-architecture.html)
+- [Robert C. Martin: The SOLID Principles](https://blog.cleancoder.com/)

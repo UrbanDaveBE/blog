@@ -1,131 +1,104 @@
 ---
-title: "Arch_compendium"
+title: "The Architecture Compendium: Principles & Patterns"
 date: 2025-02-07T19:23:25+01:00
 draft: false
-toc: false
-images:
+toc: true
 tags:
-  - untagged
+  - Architecture
+  - Best Practices
+  - Patterns
+categories:
+  - Architecture
+  - CheatSheets
 ---
 
-# 1. Software Development Principles
+# 🏛️ The Architecture Compendium
 
-## SOLID (Object-Oriented Design)
-
-- **Single Responsibility**: A class should have one reason to change.
-- **Open/Closed**: Open for extension, closed for modification.
-- **Liskov Substitution**: Subtypes must be replaceable with their base types.
-- **Interface Segregation**: Avoid bloated interfaces; split them into smaller ones.
-- **Dependency Inversion**: Depend on abstractions, not concretions.
-
-## DRY (Don’t Repeat Yourself)
-- Avoid code duplication.
-
-## KISS (Keep It Simple, Stupid)
-- Simplicity over complexity.
-
-## YAGNI (You Ain’t Gonna Need It)
-- Don’t add functionality until necessary.
-
-## GRASP (General Responsibility Assignment)
-- Patterns like Creator, Controller, Low Coupling, etc.
+This is a curated collection of fundamental software development principles, architectural patterns, and industry standards. It serves as a quick reference for designing robust and scalable systems.
 
 ---
 
-# 2. Software Architecture Principles
+## 1. Software Development Principles 🛠️
 
-## CQRS (Command Query Responsibility Segregation)
-- Separate read and write operations.
+Fundamental rules for writing clean and maintainable code.
 
-## Event Sourcing
-- Store state changes as events.
-
-## Hexagonal/Ports & Adapters
-- Decouple core logic from external systems.
-
-## Twelve-Factor App
-- Principles for cloud-native apps (e.g., config in environment, stateless processes).
-
-## RESTful Principles
-- Statelessness, uniform interface, cacheability.
+*   **SOLID (Object-Oriented Design)**: The bedrock of OOP. [Read my detailed post on SOLID]({{< ref "solid" >}}).
+*   **DRY (Don’t Repeat Yourself)**: Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.
+*   **KISS (Keep It Simple, Stupid)**: Most systems work best if they are kept simple rather than made complicated.
+*   **YAGNI (You Ain’t Gonna Need It)**: A principle of extreme programming (XP) that states a programmer should not add functionality until deemed necessary.
+*   **GRASP (General Responsibility Assignment Software Patterns)**: Nine basic principles in object-oriented design and responsibility assignment (e.g., Creator, Controller, Low Coupling, High Cohesion).
 
 ---
 
-# 3. Enterprise Architecture Frameworks
+## 2. Software Architecture Patterns 🏗️
 
-## TOGAF
-- A methodology for enterprise architecture design.
+High-level structures used to organize software systems.
 
-## Zachman Framework
-- A matrix for organizing architectural artifacts.
-
-## FEAF
-- U.S. Federal Enterprise Architecture Framework.
-
-## SOA Principles (Service-Oriented Architecture)
-- Loose coupling, service contracts, reusability, composability.
-
-## Microservices Principles
-- Decentralized data, bounded contexts, infrastructure automation.
+*   **CQRS (Command Query Responsibility Segregation)**: Segregating the operations that read data from the operations that update data. [Martin Fowler on CQRS](https://martinfowler.com/bliki/CQRS.html).
+*   **Event Sourcing**: Ensuring every change to the state of an application is captured in an event object.
+*   **Hexagonal Architecture (Ports & Adapters)**: Creating loosely coupled application components that can be easily connected to their software environment via ports and adapters. [Alistair Cockburn's original post](https://alistair.cockburn.us/hexagonal-architecture/).
+*   **Twelve-Factor App**: A methodology for building software-as-a-service apps that are scalable, maintainable, and portable. [12factor.net](https://12factor.net/).
+*   **RESTful Principles**: An architectural style for providing standards between computer systems on the web, making it easier for systems to communicate with each other.
 
 ---
 
-# 4. Database Principles
+## 3. Enterprise Architecture Frameworks 🏢
 
-## ACID (Transactions)
-- **Atomicity**: All-or-nothing execution.
-- **Consistency**: Valid state transitions.
-- **Isolation**: Concurrent transactions don’t interfere.
-- **Durability**: Committed data survives failures.
+Broad frameworks for organizing IT infrastructure across large organizations.
 
-## CAP Theorem
-- Trade-offs between **Consistency**, **Availability**, and **Partition tolerance**.
-
-## BASE (NoSQL)
-- **Basically Available**, **Soft state**, **Eventual consistency**.
+*   **TOGAF (The Open Group Architecture Framework)**: A high-level approach to design, which is typically modeled at four levels: Business, Application, Data, and Technology. [Official Site](https://www.opengroup.org/togaf).
+*   **Zachman Framework**: A schema for organizing architectural artifacts (in other words, design documents, target specifications, and models) that takes into account both what the artifact targets and what particular issue is being addressed.
+*   **FEAF (Federal Enterprise Architecture Framework)**: A framework for organizational change through the design and implementation of an enterprise architecture.
+*   **SOA Principles (Service-Oriented Architecture)**: A style of software design where services are provided to the other components by application components, through a communication protocol over a network.
+*   **Microservices Principles**: An approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms.
 
 ---
 
-# 5. DevOps & Infrastructure
+## 4. Database Principles 💾
 
-## CI/CD (Continuous Integration/Deployment)
-- Automate testing and delivery.
+Ensuring data integrity, availability, and consistency.
 
-## Infrastructure as Code (IaC)
-- Manage infrastructure via code (e.g., Terraform).
-
-## Immutable Infrastructure
-- Replace servers instead of modifying them.
-
----
-
-# 6. Security Principles
-
-## Least Privilege
-- Minimal access rights for users/systems.
-
-## Defense in Depth
-- Multiple layers of security.
-
-## Zero Trust
-- Verify explicitly, assume breach.
+*   **ACID (Transactions)**:
+    - **Atomicity**: All changes are made or none are.
+    - **Consistency**: Data is in a valid state after a transaction.
+    - **Isolation**: Concurrent transactions don't interfere.
+    - **Durability**: Changes persist even after a crash.
+*   **CAP Theorem**: States that a distributed data store can only provide two of the following three guarantees: **Consistency**, **Availability**, and **Partition tolerance**.
+*   **BASE (NoSQL)**: Basically Available, Soft state, Eventual consistency (An alternative to ACID).
 
 ---
 
-# 7. Distributed Systems & Cloud
+## 5. DevOps & Infrastructure 🚀
 
-## Fallacies of Distributed Computing
-- Assumptions to avoid (e.g., "The network is reliable").
-
-## Design for Failure
-- Assume components will fail (e.g., Netflix Chaos Monkey).
+*   **CI/CD (Continuous Integration/Deployment)**: The automated practice of merging code changes and deploying them to production.
+*   **Infrastructure as Code (IaC)**: Managing and provisioning infrastructure through machine-readable definition files (e.g., Terraform, Ansible).
+*   **Immutable Infrastructure**: An approach where servers are never modified after deployment. If something needs to change, a new server is built from a common image.
 
 ---
 
-# 8. Agile & Process Principles
+## 6. Security Principles 🔒
 
-## Agile Manifesto
-- Individuals over processes, working software over documentation.
+*   **Least Privilege**: A subject should be given only those privileges needed for it to complete its task.
+*   **Defense in Depth**: Utilizing multiple layers of security for protecting assets.
+*   **Zero Trust**: A security framework requiring all users, whether in or outside the organization's network, to be authenticated, authorized, and continuously validated.
 
-## Iterative Development
-- Deliver incrementally.
+---
+
+## 7. Distributed Systems & Cloud ☁️
+
+*   **Fallacies of Distributed Computing**: A set of assertions made by L Peter Deutsch and others at Sun Microsystems describing false assumptions that programmers new to distributed applications invariably make.
+*   **Design for Failure**: A design strategy that assumes things will go wrong and ensures the system can recover gracefully.
+
+---
+
+## 8. Agile & Process Principles 🏃
+
+*   **Agile Manifesto**: A formal proclamation of four key values and 12 principles to guide an iterative and people-centric approach to software development. [AgileManifesto.org](https://agilemanifesto.org/).
+*   **Iterative Development**: A way of breaking down the software development of a large application into smaller chunks.
+
+---
+
+## 📚 Further reading & Resources
+- [Martin Fowler - Architecture Patterns](https://martinfowler.com/architecture/)
+- [Architecture Notes - A collection of diagrams and notes](https://architecturenotes.co/)
+- [Clean Architecture by Robert C. Martin](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)

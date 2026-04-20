@@ -1,32 +1,38 @@
 baseURL = 'https://urbandavebe.github.io/'
 languageCode = 'en-us'
 title = 'some random docs'
-theme        = "hugo-theme-hello-friend-ng"
+theme = 'hugo-papermod'
+
 [params]
-  homeSubtitle = "A simple thingy about docs"
-  
-[params.footer]
-trademark = "UrbanDaveBE"
-author = "John Doe"
-copyright = "© 2025 Mein Unternehmen"
-rss = true
-topText = ["Footer top text here"]
-bottomText = ["Footer bottom text"]
-[menu]
-  [[menu.main]]
-    identifier = "home"
-    name = "Home"
-    url = "/"
-    weight = 1
+    env = 'production'
+    title = 'some random docs'
+    description = 'A simple thingy about docs'
+    author = 'UrbanDaveBE'
+    defaultTheme = 'light'
+    showReadingTime = true
+    showShareButtons = true
+    showPostNavLinks = true
+    ShowBreadCrumbs = true
+    ShowCodeCopyButtons = true
 
-  [[menu.main]]
-    identifier = "Posts"
-    name = "Posts"
-    url = "/posts/"
-    weight = 2
+    [params.homeInfoParams]
+        Title = "Welcome to my Wissensdatenbank"
+        Content = "Here I collect notes, guides, and architecture principles."
 
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about/"
-    weight = 3
+[[menu.main]]
+    identifier = 'home'
+    name = 'Home'
+    url = '/'
+    weight = 10
+
+[[menu.main]]
+    identifier = 'posts'
+    name = 'Posts'
+    url = '/posts/'
+    weight = 20
+
+[[menu.main]]
+    identifier = 'about'
+    name = 'About'
+    url = '/about/'
+    weight = 30

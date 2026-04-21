@@ -18,7 +18,7 @@ canonifyURLs = true
     disableScrollToTop = false
 
     [params.homeInfoParams]
-        Title = "Welcome to my Wissensdatenbank"
+        Title = "Welcome to my ..."
         Content = "Here I collect notes, guides, and architecture principles."
 
 [[menu.main]]
